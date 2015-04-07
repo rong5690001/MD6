@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/md_blue_900"
+    android:elevation="5dp"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/left_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="菜单"
+        android:textSize="@dimen/toolbar_text_size"
+        android:layout_weight="2"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/toolbar_text_size"
+        android:text="标题"
+        android:gravity="center"
+        android:layout_weight="5"/>
+    <TextView
+        android:id="@+id/right_btn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/toolbar_text_size"
+        android:text="个人"
+        android:gravity="right"
+        android:layout_weight="2"/>
+
+
+</LinearLayout>
