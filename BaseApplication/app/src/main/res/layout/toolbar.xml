@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="菜单"
         android:textSize="@dimen/toolbar_text_size"
-        android:layout_weight="2"/>
+        android:layout_weight="1"/>
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
@@ -29,7 +29,7 @@
         android:textSize="@dimen/toolbar_text_size"
         android:text="个人"
         android:gravity="right"
-        android:layout_weight="2"/>
+        android:layout_weight="1"/>
 
 
 </LinearLayout>

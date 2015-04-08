@@ -1,5 +1,7 @@
 package material.chen.org.baseapplication.view;
 
+import android.graphics.Color;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,9 +12,11 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.materialdrawer.Drawer;
@@ -25,9 +29,11 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import material.chen.org.baseapplication.R;
 import material.chen.org.baseapplication.adapter.IconAdapter;
+import material.chen.org.baseapplication.util.AnimationUtil;
 import rx.Observable;
 import rx.Observer;
 
@@ -36,6 +42,8 @@ public class MainActivity extends ActionBarActivity {
 
     private Drawer.Result result = null;
     private ArrayList<String> icons = new ArrayList<String>();
+    private TextView leftBtn;
+    private SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +52,23 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
 
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
 
-        findViewById(R.id.left_btn).setOnClickListener(new View.OnClickListener() {
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(MainActivity.this, "refresh....", Toast.LENGTH_LONG).show();
+                if(refreshLayout.isRefreshing()){
+
+                }
+            }
+        });
+
+        leftBtn = (TextView) findViewById(R.id.left_btn);
+        leftBtn.setText("");
+        leftBtn.setBackground(new IconicsDrawable(this, FontAwesome.Icon.faw_bars).color(Color.WHITE).sizeDp(15));
+        new Iconics.IconicsBuilder().ctx(this).on(leftBtn).build();
+        leftBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (result.isDrawerOpen())return;
@@ -158,7 +181,7 @@ public class MainActivity extends ActionBarActivity {
                 icons.add(icon);
             }
         }
-
+        AnimationUtil.animation(leftBtn);
         mAdapter.setIcons(icons);
     }
 

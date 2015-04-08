@@ -5,11 +5,13 @@ import android.view.IconicsImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import java.util.List;
 
 import material.chen.org.baseapplication.R;
+import material.chen.org.baseapplication.util.AnimationUtil;
 import material.chen.org.baseapplication.view.MainActivity;
 
 /**
@@ -19,6 +21,7 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
     private List<String> icons;
     private int rowLayout;
     private MainActivity mAct;
+    private int preposition = 0;
 
     public IconAdapter(List<String> icons, int rowLayout, MainActivity act) {
         this.icons = icons;
@@ -42,6 +45,14 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
         final String icon = icons.get(i);
         viewHolder.image.setIcon(icon);
         viewHolder.name.setText(icon);
+
+        if(i > preposition){
+            AnimationUtil.animateItem(viewHolder, false);
+        }else{
+            AnimationUtil.animateItem(viewHolder, true);
+        }
+        preposition = i;
+
     }
 
     @Override
