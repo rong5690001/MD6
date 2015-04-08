@@ -1,6 +1,8 @@
 package material.chen.org.baseapplication.view;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -33,6 +36,7 @@ import java.util.Timer;
 
 import material.chen.org.baseapplication.R;
 import material.chen.org.baseapplication.adapter.IconAdapter;
+import material.chen.org.baseapplication.common.RecyclerviewOnItemClickListener;
 import material.chen.org.baseapplication.util.AnimationUtil;
 import rx.Observable;
 import rx.Observer;
@@ -183,6 +187,21 @@ public class MainActivity extends ActionBarActivity {
         }
         AnimationUtil.animation(leftBtn);
         mAdapter.setIcons(icons);
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerviewOnItemClickListener(this, mRecyclerView, new RecyclerviewOnItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view, "selectedItem");
+                        Intent intent = new Intent(MainActivity.this, DetilActivity.class);
+                        startActivity(intent, compat.toBundle());
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                    }
+                })
+        );
     }
 
     @Override

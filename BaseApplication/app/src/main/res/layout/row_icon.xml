@@ -20,6 +20,7 @@
     android:layout_width="match_parent"
     android:layout_margin="5dp"
     android:clickable="true"
+    android:transitionName="selectedItem"
     android:layout_height="wrap_content">
 
 
@@ -37,7 +38,7 @@
         android:background="@drawable/button_rect_list_normal"
         />
 
-    <com.mikepenz.iconics.IconicsImageView
+    <IconicsImageView
         android:id="@+id/icon"
         android:layout_width="48dp"
         android:layout_height="48dp"

@@ -53,6 +53,7 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
         }
         preposition = i;
 
+
     }
 
     @Override
